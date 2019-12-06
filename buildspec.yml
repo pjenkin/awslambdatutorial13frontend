@@ -16,6 +16,9 @@ phases:
       - echo Invalidating CloudFront Cache
       # REPLACE XXXXXXXX WITH THE CLOUDFRONT DISTRIBUTION ID OF YOUR STATIC WEBSITE AND UNCOMMENT THE LINE
       # - aws cloudfront create-invalidation --distribution-id XXXXXXXX --paths "/*"
+      - aws cloudfront create-invalidation --distribution-id E6K7LI0YMODPC --paths "/*"
+      # Cache-busting on new build - un-commented & Distribution ID in 13-226 Invalidating CloudFront cache automatically using CloudBuild
+      # Distribution ID found in CloudFront console
   post_build:
     commands:
       - echo Deployment completed on `date`
