@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DatePipe, SlicePipe } from '@angular/common';
 import { NotesApiService } from '../../services/notes-api/notes-api.service';
 
 @Component({
