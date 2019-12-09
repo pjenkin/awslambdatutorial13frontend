@@ -58,7 +58,7 @@ export class NotesApiService {
                             // (Separate to args) The aws4 RequestSigner is expecting objects ((i) of AWS options, (ii) of AWS credential values) as argument
                 let creds = {
                     acessKeyId: savedCreds.Credentials.AccessKeyId,
-                    secretAccessKey: savedCreds.Credentials.secretAccessKey,
+                    secretAccessKey: savedCreds.Credentials.secretKey,
                     sessionToken: savedCreds.Credentials.sessionToken
                 };
                 let signer = new RequestSigner(args, creds);
