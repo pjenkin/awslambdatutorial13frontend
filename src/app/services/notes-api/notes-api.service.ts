@@ -79,12 +79,7 @@ export class NotesApiService {
         } catch (err)
         {
             // do nothing really
-        }
-
-
-
-
-          
+        }          
     }
 
     addNote(item) {
@@ -104,7 +99,8 @@ export class NotesApiService {
         let reqBody = {
             Item: itemData
         };
-        this.setOptions();
+        //this.setOptions();       // 14-239 using altered setOptions  - Signing AWS Requests
+        this.setOptions(path, 'POST', JSON.stringify(reqBody));
         return this.httpClient.post(endpoint, reqBody, this.options);
     }
 
@@ -127,14 +123,16 @@ export class NotesApiService {
         let reqBody = {
             Item: itemData
         };
-        this.setOptions();
+        //this.setOptions();
+        this.setOptions(path, 'PATCH', JSON.stringify(reqBody));
+        
         return this.httpClient.patch(endpoint, reqBody, this.options);
     }
 
     deleteNote(timestamp) {
         let path = STAGE + '/note/t/' + timestamp;
         let endpoint = API_ROOT + path;
-        this.setOptions();
+        this.setOptions(path, 'DELETE');
         return this.httpClient.delete(endpoint, this.options);
     }
 
@@ -145,7 +143,7 @@ export class NotesApiService {
             path += '&start=' + start;
         }
         let endpoint = API_ROOT + path;
-        this.setOptions();
+        this.setOptions(path, 'GET');       // 14-239 using altered setOptions  - Signing AWS Requests
         return this.httpClient.get(endpoint, this.options);
     }
 }
