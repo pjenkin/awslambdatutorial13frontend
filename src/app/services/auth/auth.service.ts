@@ -22,7 +22,29 @@ export class AuthService {
      * Set IDP id_token and aws credentials here
      */
     async setCredentials(id_token) {
-        //To be implemented
+        // 14-236 Getting AWS credentials from the Cognito identity pool
+        // called when user d'log in (login() function)
+        // set a try/catch first
+
+        try {
+                let options = {
+                    headers: {     // use utils bespoke function?
+                        Authorization: id_token
+                    }
+                };
+                // use Lambda Function for getting authorisation (from 14-231/233) to use back-end API
+                let endpoint = API_ROOT + STAGE + '/auth';
+                let credentials = this.httpClient.get(endpoint, options).toPromise();
+
+                localStorage.setItem('id_token', id_token);
+                localStorage.setItem('aws', JSON.stringify(credentials));
+                return;
+        }
+        catch (err) {
+            localStorage.removeItem('id_token');
+            localStorage.removeItem('aws');
+            throw (err);
+        }
     }
 
     getCredentials() {
