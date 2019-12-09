@@ -13,8 +13,14 @@ export class NotesApiService {
     setOptions() {
         this.options = {
             headers: {
+                /*
                 app_user_id: 'test_user',
                 app_user_name: 'Test User'
+                // hard-coded login values left in prior to 14-237 (good job I used these as suggested while using in section 12?)
+                */
+
+                
+
             }
         };
     }
